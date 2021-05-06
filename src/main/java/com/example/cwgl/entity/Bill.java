@@ -12,7 +12,7 @@ public class Bill {
     private String remark;
     private Integer paywayid;
     private String payway;
-    private String time;
+    private String gmtTime;
     private String startTime;
     private String endTime;
     private String houseid;  //执行查询用户的houseid
@@ -91,14 +91,6 @@ public class Bill {
         this.payway = payway;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getRealname() {
         return realname;
     }
@@ -134,6 +126,14 @@ public class Bill {
         this.houseid = houseid;
     }
 
+    public String getGmtTime() {
+        return gmtTime;
+    }
+
+    public void setGmtTime(String gmtTime) {
+        this.gmtTime = gmtTime;
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
@@ -147,7 +147,7 @@ public class Bill {
                 ", remark='" + remark + '\'' +
                 ", paywayid='" + paywayid + '\'' +
                 ", payway='" + payway + '\'' +
-                ", time='" + time + '\'' +
+                ", gmtTime='" + gmtTime + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
                 ", houseid='" + houseid + '\'' +

@@ -1,6 +1,8 @@
 package com.example.cwgl.controller;
 
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.example.cwgl.entity.Bill;
 import com.example.cwgl.entity.Payway;
 import com.example.cwgl.entity.UserInfo;
@@ -40,7 +42,14 @@ public class BillController {
     @RequestMapping("/getBillsToChart")
     public Result<Bill> findByWhereNoPage(Bill bill, HttpSession session){
         bill = getHouseBill(bill,session);
-        return billService.findByWhereNoPage(bill);
+        DateTime beginOfDay = DateUtil.beginOfDay(DateUtil.parse(bill.getStartTime()));
+        DateTime endOfDay = DateUtil.endOfDay(DateUtil.parse(bill.getEndTime()));
+        String begin = DateUtil.format(beginOfDay, "yyyy-MM-dd HH:mm:ss");
+        String end = DateUtil.format(endOfDay, "yyyy-MM-dd HH:mm:ss");
+        bill.setStartTime(begin);
+        bill.setEndTime(end);
+        Result<Bill> byWhereNoPage = billService.findByWhereNoPage(bill);
+        return byWhereNoPage;
     }
 
     @RequestMapping("/getBillsByWhere/{type}/{pageNo}/{pageSize}")

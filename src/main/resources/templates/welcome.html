@@ -518,7 +518,7 @@
             var dateStr = now.getFullYear() + "-" + month + "-" + day;
             var incomeSum = 0, paySum = 0, netIncomeSum = 0;
             $.each(datas, function (index, item) {
-                if (item.time.split(" ")[0] == dateStr) {
+                if (item.gmtTime.split(" ")[0] == dateStr) {
                     if (item.typeid == 1) {
                         paySum += parseFloat(item.money);
                     } else if (item.typeid == 2) {

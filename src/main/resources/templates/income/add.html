@@ -37,6 +37,10 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">收入日期</label>
+        <input class="layui-input" name="gmtTime" placeholder="收入日期" id="start" autocomplete="off" style="width: 250px;">
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">收入方式</label>
         <div class="layui-input-block">
             <select id="payway" name="paywayid" lay-verify="payway">
@@ -72,11 +76,16 @@
         $("button[lay-filter=add]").css("display","block");
     }
 
-    layui.use(['form','layer'], function(){
+    layui.use(['form','layer','laydate'], function(){
         $ = layui.jquery;
         var form = layui.form
             ,layer = layui.layer;
-
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start', //指定元素
+            type: 'datetime'
+        });
 
         //自定义验证规则
         form.verify({

@@ -54,6 +54,10 @@ public class UserInfoController {
     @RequestMapping(value = "/login.do")
     @ResponseBody
     public Result getUserInfo(UserInfo userInfo, HttpServletRequest request, HttpServletResponse response){
+        boolean userNotExisted = userInfoService.userNotExisted(userInfo);
+        if(userNotExisted){
+            return ResultUtil.unSuccess("该用户不存在！");
+        }
         boolean userIsExisted = userInfoService.userIsExisted(userInfo);
         System.out.println(userIsExisted + " - " + request.getHeader("token"));
         userInfo = getUserInfo(userInfo);
@@ -62,7 +66,7 @@ public class UserInfoController {
             return  ResultUtil.success(-1);
         }
         if (userIsExisted && userInfo == null){
-            return  ResultUtil.unSuccess("用户名或密码错误！");
+            return ResultUtil.unSuccess("用户名或密码错误！");
         }else {
             //将用户信息存入session
             userInfo = setSessionUserInfo(userInfo,request.getSession());

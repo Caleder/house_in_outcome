@@ -16,6 +16,8 @@ public interface UserInfoService {
 
     boolean userIsExisted(UserInfo userInfo);
 
+    boolean userNotExisted(UserInfo userInfo);
+
     int delete(String id);
 
     UserInfo getUserInfo(UserInfo userInfo);

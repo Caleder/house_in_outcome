@@ -61,6 +61,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
+    public boolean userNotExisted(UserInfo userInfo) {
+        return userInfoMapper.userIsExisted(userInfo) == 0 ? true : false;
+    }
+
+    @Override
     public Result getUsersByWhere(PageModel<UserInfo> model) {
         try {
             List<UserInfo> users = userInfoMapper.getUsersByWhere(model);
